@@ -8,6 +8,8 @@ spring:
     url: "${DB_URL:jdbc:mysql://localhost:3306/clstore?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8}"
     username: root
     password: ""
+  flyway:
+    enabled: false
   jpa:
     open-in-view: false
     hibernate:
@@ -16,3 +18,7 @@ spring:
       hibernate:
         jdbc:
           time_zone: UTC
+
+eureka:
+  client:
+    enabled: false
