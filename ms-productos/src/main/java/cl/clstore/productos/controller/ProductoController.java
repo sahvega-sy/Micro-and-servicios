@@ -29,16 +29,16 @@ public class ProductoController {
         this.servicio = servicio;
     }
 
-
     @GetMapping
     public List<ProductoResponse> listar(
             @RequestParam(name = "categoria", required = false) String categoria,
             @RequestParam(name = "q", required = false) String q,
             @RequestParam(name = "oferta", defaultValue = "false") boolean oferta,
             @RequestParam(name = "excluir", required = false) String excluir,
+            @RequestParam(name = "ids", required = false) List<String> ids,
             @RequestParam(name = "orden", required = false) String orden,
             @RequestParam(name = "limit", required = false) Integer limit) {
-        return servicio.listar(categoria, q, oferta, excluir, orden, limit)
+        return servicio.listar(categoria, q, oferta, excluir, ids, orden, limit)
             .stream().map(ProductoResponse::desde).toList();
     }
 

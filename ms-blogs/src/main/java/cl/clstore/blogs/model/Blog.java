@@ -1,16 +1,14 @@
 package cl.clstore.blogs.model;
 
-import java.time.Instant;
-import java.util.List;
-
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import java.time.Instant;
+import java.util.List;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "blogs")
@@ -29,6 +27,7 @@ public class Blog {
     @Column(name = "imagen", length = 1000)
     private String imagen;
 
+    /** Lista de párrafos, guardada como JSON. */
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "contenido", nullable = false)
     private List<String> contenido;

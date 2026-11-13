@@ -33,8 +33,8 @@ public class ProductoService {
 
     @Transactional(readOnly = true)
     public List<Producto> listar(String categoria, String texto, boolean soloOfertas,
-                                 String excluirId, String orden, Integer limite) {
-        Specification<Producto> filtro = ProductoSpecs.filtrar(categoria, texto, soloOfertas, excluirId);
+                                 String excluirId, List<String> ids, String orden, Integer limite) {
+        Specification<Producto> filtro = ProductoSpecs.filtrar(categoria, texto, soloOfertas, excluirId, ids);
         Sort sort = ordenar(orden);
         if (limite != null && limite > 0) {
             return repositorio.findAll(filtro, PageRequest.of(0, Math.min(limite, LIMITE_MAXIMO), sort)).getContent();

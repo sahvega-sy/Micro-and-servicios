@@ -1,18 +1,16 @@
 package cl.clstore.productos.model;
 
-import java.math.BigDecimal;
-import java.time.Instant;
-import java.util.List;
-import java.util.Map;
-
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import java.math.BigDecimal;
+import java.time.Instant;
+import java.util.List;
+import java.util.Map;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "productos")
@@ -37,6 +35,7 @@ public class Producto {
     @Column(name = "stock_critico")
     private Integer stockCritico;
 
+    /** Valor (slug) de la categoría; la categoría vive en ms-categoria. */
     @Column(name = "categoria", nullable = false, length = 100)
     private String categoria;
 

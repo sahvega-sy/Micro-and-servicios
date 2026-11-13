@@ -52,6 +52,7 @@ public class CategoriaService {
         return repositorio.save(new Categoria(valor, etiqueta, iconoOPorDefecto(r.icono())));
     }
 
+    /** El "valor" no cambia (los productos lo referencian); solo se edita etiqueta e icono. */
     public Categoria actualizar(String valor, CategoriaRequest r) {
         Categoria c = obtener(valor);
         c.setEtiqueta(r.etiqueta().trim());
@@ -70,6 +71,7 @@ public class CategoriaService {
         repositorio.deleteById(valor);
     }
 
+    /** "Consolas & Laptops" -> "consolas_laptops" (misma regla que usaba el front). */
     static String generarValor(String texto) {
         return Normalizer.normalize(texto, Normalizer.Form.NFD)
             .replaceAll("\\p{M}+", "")

@@ -1,15 +1,17 @@
 package cl.clstore.blogs.service;
 
+import java.util.List;
+
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import cl.clstore.blogs.dto.BlogRequest;
 import cl.clstore.blogs.exception.ConflictoException;
 import cl.clstore.blogs.exception.RecursoNoEncontradoException;
 import cl.clstore.blogs.exception.ReglaNegocioException;
 import cl.clstore.blogs.model.Blog;
 import cl.clstore.blogs.repository.BlogRepository;
-import java.util.List;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BlogService {
@@ -20,7 +22,6 @@ public class BlogService {
         this.repositorio = repositorio;
     }
 
-    /** Más recientes primero (igual que el front actual). */
     @Transactional(readOnly = true)
     public List<Blog> listar() {
         return repositorio.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));

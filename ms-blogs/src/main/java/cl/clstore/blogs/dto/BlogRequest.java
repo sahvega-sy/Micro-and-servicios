@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+
 public record BlogRequest(
     @Size(max = 100, message = "máximo 100 caracteres")
     @Pattern(regexp = "^[A-Za-z0-9_-]+$", message = "solo letras, números, guion y guion bajo") String id,

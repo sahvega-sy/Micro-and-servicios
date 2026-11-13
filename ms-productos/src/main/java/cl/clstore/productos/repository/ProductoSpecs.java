@@ -13,7 +13,8 @@ public final class ProductoSpecs {
     private ProductoSpecs() {
     }
 
-    public static Specification<Producto> filtrar(String categoria, String texto, boolean soloOfertas, String excluirId) {
+    public static Specification<Producto> filtrar(String categoria, String texto, boolean soloOfertas,
+                                                  String excluirId, List<String> ids) {
         return (root, query, cb) -> {
             List<Predicate> condiciones = new ArrayList<>();
 
@@ -31,6 +32,9 @@ public final class ProductoSpecs {
             }
             if (hayTexto(excluirId)) {
                 condiciones.add(cb.notEqual(root.get("id"), excluirId.trim()));
+            }
+            if (ids != null && !ids.isEmpty()) {
+                condiciones.add(root.get("id").in(ids));
             }
             return cb.and(condiciones.toArray(new Predicate[0]));
         };
