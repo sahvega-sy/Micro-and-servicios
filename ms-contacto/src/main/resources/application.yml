@@ -1,0 +1,32 @@
+server:
+  port: ${PORT:8088}
+
+spring:
+  application:
+    name: ms-contacto
+  datasource:
+    url: "${DB_URL:jdbc:mysql://localhost:3306/clstore_contacto?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8}"
+    username: ${DB_USER:clstore}
+    password: ${DB_PASSWORD:clstore123}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none          # el esquema se crea con los scripts de /database
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+
+app:
+  jwt:
+    # Debe ser el MISMO valor en TODOS los microservicios (ms-usuarios firma el JWT; los demás lo validan).
+    # Mínimo 32 caracteres. Cámbialo fuera de desarrollo.
+    secret: "${JWT_SECRET:clstore-dev-secret-cambiar-en-produccion-32b}"
+  cors:
+    allowed-origins: "${CORS_ORIGINS:http://localhost:5173}"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
