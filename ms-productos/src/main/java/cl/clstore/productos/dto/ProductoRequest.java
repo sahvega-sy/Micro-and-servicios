@@ -1,18 +1,22 @@
 package cl.clstore.productos.dto;
 
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
 
+/**
+ * Cuerpo de POST (crear) y PUT (actualizar). Los nombres JSON replican las columnas
+ * que ya usaba el front con Supabase (stock_critico, descuento_porcentaje).
+ *
+ * En PUT, "imagenes", "destacado" y "especificaciones" solo se modifican si vienen en el cuerpo.
+ */
 public record ProductoRequest(
     @Size(min = 3, max = 100, message = "el código debe tener entre 3 y 100 caracteres") String id,
     @NotBlank(message = "es obligatorio") @Size(max = 100, message = "máximo 100 caracteres") String nombre,

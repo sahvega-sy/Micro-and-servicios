@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
 
+/** Consulta a ms-productos (endpoint público de lectura) para saber si una categoría está en uso. */
 @Component
 public class ProductoClient {
 

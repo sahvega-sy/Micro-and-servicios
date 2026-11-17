@@ -1,5 +1,6 @@
 package cl.clstore.blogs.service;
 
+import cl.clstore.blogs.exception.ReglaNegocioException;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
@@ -7,15 +8,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import cl.clstore.blogs.exception.ReglaNegocioException;
-
-
+/**
+ * Guarda las imágenes en disco: <app.uploads.dir>/blogs/<uuid>.<ext>
+ * El nombre original del archivo se descarta (evita colisiones y rutas peligrosas) y la extensión
+ * sale de una lista de tipos permitidos, no del nombre enviado por el cliente.
+ */
 @Component
 public class AlmacenImagenes {
 

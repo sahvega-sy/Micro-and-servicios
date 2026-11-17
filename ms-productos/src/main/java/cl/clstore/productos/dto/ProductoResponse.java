@@ -1,14 +1,13 @@
 package cl.clstore.productos.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import cl.clstore.productos.model.Producto;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import cl.clstore.productos.model.Producto;
-
+/** Misma forma que las filas que devolvía Supabase, para que el front cambie lo mínimo. */
 public record ProductoResponse(
     String id,
     String nombre,

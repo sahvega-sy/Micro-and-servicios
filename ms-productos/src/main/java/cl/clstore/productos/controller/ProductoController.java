@@ -1,7 +1,10 @@
 package cl.clstore.productos.controller;
 
+import cl.clstore.productos.dto.ProductoRequest;
+import cl.clstore.productos.dto.ProductoResponse;
+import cl.clstore.productos.service.ProductoService;
+import jakarta.validation.Valid;
 import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import cl.clstore.productos.dto.ProductoRequest;
-import cl.clstore.productos.dto.ProductoResponse;
-import cl.clstore.productos.service.ProductoService;
-import jakarta.validation.Valid;
-
 @RestController
 @RequestMapping("/api/productos")
 public class ProductoController {
@@ -29,6 +27,11 @@ public class ProductoController {
         this.servicio = servicio;
     }
 
+    /**
+     * Listado con filtros opcionales:
+     *  categoria=componentes | q=texto | oferta=true | excluir=idProducto | ids=a,b,c |
+     *  orden=nombre|creado_asc|creado_desc|descuento_desc | limit=3
+     */
     @GetMapping
     public List<ProductoResponse> listar(
             @RequestParam(name = "categoria", required = false) String categoria,

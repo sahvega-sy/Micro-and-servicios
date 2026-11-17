@@ -1,7 +1,7 @@
 package cl.clstore.productos.controller;
 
+import cl.clstore.productos.service.AlmacenImagenes;
 import java.util.Map;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import cl.clstore.productos.service.AlmacenImagenes;
-
+/** POST /api/productos/imagenes  (multipart, campo "archivo")  ->  201 { "url": "http://.../uploads/..." } */
 @RestController
 @RequestMapping("/api/productos/imagenes")
 public class ImagenController {

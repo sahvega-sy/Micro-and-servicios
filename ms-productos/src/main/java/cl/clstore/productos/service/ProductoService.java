@@ -1,13 +1,5 @@
 package cl.clstore.productos.service;
 
-import java.util.List;
-
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import cl.clstore.productos.client.CategoriaClient;
 import cl.clstore.productos.dto.ProductoRequest;
 import cl.clstore.productos.exception.ConflictoException;
@@ -16,6 +8,12 @@ import cl.clstore.productos.exception.ReglaNegocioException;
 import cl.clstore.productos.model.Producto;
 import cl.clstore.productos.repository.ProductoRepository;
 import cl.clstore.productos.repository.ProductoSpecs;
+import java.util.List;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProductoService {
@@ -78,6 +76,7 @@ public class ProductoService {
         repositorio.deleteById(id);
     }
 
+    /** Campos básicos siempre se reemplazan; imagenes/destacado/especificaciones solo si vienen informados. */
     private void aplicar(Producto p, ProductoRequest r) {
         String nombre = r.nombre().trim();
         p.setNombre(nombre);

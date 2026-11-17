@@ -46,8 +46,6 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers("/actuator/health").permitAll()
-                .requestMatchers("/error").permitAll()
-                .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/resenas").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/resenas").authenticated()
                 .anyRequest().hasAnyRole("Administrador", "Vendedor"))

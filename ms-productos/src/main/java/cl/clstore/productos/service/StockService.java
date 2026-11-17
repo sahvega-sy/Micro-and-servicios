@@ -1,17 +1,19 @@
 package cl.clstore.productos.service;
 
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import cl.clstore.productos.dto.StockRequest;
 import cl.clstore.productos.exception.ConflictoException;
 import cl.clstore.productos.exception.RecursoNoEncontradoException;
 import cl.clstore.productos.repository.ProductoRepository;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * Descuento y reposición de stock para ms-ordenes.
+ * "descontar" es todo-o-nada: si un producto no alcanza, se revierte lo ya descontado en la misma transacción.
+ */
 @Service
 public class StockService {
 

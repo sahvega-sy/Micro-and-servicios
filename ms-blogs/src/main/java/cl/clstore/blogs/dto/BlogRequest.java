@@ -1,15 +1,16 @@
 package cl.clstore.blogs.dto;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import java.util.List;
 
-
+/**
+ * Cuerpo de POST (crear) y PUT (actualizar). "id" solo se usa al crear (es parte de la URL en PUT).
+ * "contenido" es la lista de párrafos del artículo.
+ */
 public record BlogRequest(
     @Size(max = 100, message = "máximo 100 caracteres")
     @Pattern(regexp = "^[A-Za-z0-9_-]+$", message = "solo letras, números, guion y guion bajo") String id,

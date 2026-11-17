@@ -1,13 +1,5 @@
 package cl.clstore.categoria.service;
 
-import java.text.Normalizer;
-import java.util.List;
-import java.util.Locale;
-
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import cl.clstore.categoria.client.ProductoClient;
 import cl.clstore.categoria.dto.CategoriaRequest;
 import cl.clstore.categoria.exception.ConflictoException;
@@ -15,6 +7,12 @@ import cl.clstore.categoria.exception.RecursoNoEncontradoException;
 import cl.clstore.categoria.exception.ReglaNegocioException;
 import cl.clstore.categoria.model.Categoria;
 import cl.clstore.categoria.repository.CategoriaRepository;
+import java.text.Normalizer;
+import java.util.List;
+import java.util.Locale;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CategoriaService {

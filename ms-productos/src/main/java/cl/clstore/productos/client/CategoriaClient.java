@@ -1,5 +1,7 @@
 package cl.clstore.productos.client;
 
+import cl.clstore.productos.exception.ReglaNegocioException;
+import cl.clstore.productos.exception.ServicioNoDisponibleException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Component;
@@ -7,9 +9,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
 
-import cl.clstore.productos.exception.ReglaNegocioException;
-import cl.clstore.productos.exception.ServicioNoDisponibleException;
-
+/** Consulta a ms-categoria (endpoint público de lectura) para validar la categoría de un producto. */
 @Component
 public class CategoriaClient {
 

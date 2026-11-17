@@ -3,10 +3,8 @@ package cl.clstore.productos.config;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
-
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,7 +24,15 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-
+/**
+ * Seguridad stateless con JWT (HS256).
+ *
+ * Las reglas de acceso están en authorizeHttpRequests (de lo más específico a lo más general).
+ * Todo lo que no coincida con una regla requiere un JWT con claim "rol" = Administrador | Vendedor.
+ *
+ * El JWT lo emite ms-usuarios (POST /api/auth/login) con el mismo secreto compartido.
+ * Para pruebas sueltas también sirve scripts/GenerarToken.java.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -40,8 +46,6 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers("/actuator/health").permitAll()
-                .requestMatchers("/error").permitAll()
-                .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/productos", "/api/productos/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/uploads/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/productos/stock/**").hasRole("Servicio")

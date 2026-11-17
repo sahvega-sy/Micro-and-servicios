@@ -3,7 +3,6 @@ package cl.clstore.productos.exception;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
+/** Respuestas de error uniformes (RFC 7807). El mensaje legible viaja en el campo "detail". */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 

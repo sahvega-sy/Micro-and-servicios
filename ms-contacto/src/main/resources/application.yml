@@ -6,8 +6,8 @@ spring:
     name: ms-contacto
   datasource:
     url: "${DB_URL:jdbc:mysql://localhost:3306/clstore_contacto?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8}"
-    username: ${DB_USER:clstore}
-    password: ${DB_PASSWORD:clstore123}
+    username: root
+    password: ""
   jpa:
     open-in-view: false
     hibernate:

@@ -1,5 +1,6 @@
 package cl.clstore.productos.service;
 
+import cl.clstore.productos.exception.ReglaNegocioException;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
@@ -7,14 +8,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import cl.clstore.productos.exception.ReglaNegocioException;
-
+/**
+ * Guarda las imágenes en disco: <app.uploads.dir>/productos/<uuid>.<ext>
+ * El nombre original del archivo se descarta (evita colisiones y rutas peligrosas) y la extensión
+ * sale de una lista de tipos permitidos, no del nombre enviado por el cliente.
+ */
 @Component
 public class AlmacenImagenes {
 
@@ -33,6 +36,7 @@ public class AlmacenImagenes {
         this.carpeta = Paths.get(raiz).toAbsolutePath().normalize().resolve(SUBCARPETA);
     }
 
+    /** @return URL pública absoluta de la imagen guardada. */
     public String guardar(MultipartFile archivo) {
         if (archivo == null || archivo.isEmpty()) {
             throw new ReglaNegocioException("Debes adjuntar una imagen.");

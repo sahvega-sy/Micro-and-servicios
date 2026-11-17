@@ -1,13 +1,12 @@
 package cl.clstore.productos.repository;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.data.jpa.domain.Specification;
-
 import cl.clstore.productos.model.Producto;
 import jakarta.persistence.criteria.Predicate;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.data.jpa.domain.Specification;
 
+/** Filtros opcionales y combinables para el listado de productos. */
 public final class ProductoSpecs {
 
     private ProductoSpecs() {

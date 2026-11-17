@@ -1,12 +1,11 @@
 package cl.clstore.blogs.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import cl.clstore.blogs.model.Blog;
 import java.time.Instant;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import cl.clstore.blogs.model.Blog;
-
+/** Misma forma que las filas que devolvía Supabase (fuente_nombre, fuente_url, created_at). */
 public record BlogResponse(
     String id,
     String titulo,

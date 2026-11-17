@@ -1,0 +1,21 @@
+# MySQL local OPCIONAL: si ya tienes MySQL instalado (Workbench, XAMPP, etc.) no lo necesitas;
+# basta con ejecutar a mano los scripts de /database en orden.
+#
+#   docker compose up -d        -> levanta MySQL y ejecuta los scripts la primera vez
+#   docker compose down -v      -> borra el volumen (para volver a sembrar desde cero)
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: clstore-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+    ports:
+      - "3306:3306"
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+    volumes:
+      - clstore_mysql_data:/var/lib/mysql
+      - ./database:/docker-entrypoint-initdb.d:ro
+
+volumes:
+  clstore_mysql_data:

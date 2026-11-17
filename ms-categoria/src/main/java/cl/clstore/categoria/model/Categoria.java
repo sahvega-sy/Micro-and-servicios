@@ -9,6 +9,7 @@ import jakarta.persistence.Table;
 @Table(name = "categorias")
 public class Categoria {
 
+    /** Identificador estable en formato slug (ej. "componentes"). Es lo que guardan los productos. */
     @Id
     @Column(name = "valor", length = 100)
     private String valor;
