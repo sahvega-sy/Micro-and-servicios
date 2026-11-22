@@ -5,7 +5,6 @@ import cl.clstore.blogs.model.Blog;
 import java.time.Instant;
 import java.util.List;
 
-/** Fábrica de objetos de prueba para no repetir código en cada test. */
 public final class DatosPrueba {
 
     private DatosPrueba() {
@@ -28,7 +27,7 @@ public final class DatosPrueba {
         return blog("mi-blog", "Mi blog", Instant.parse("2026-01-15T12:00:00Z"));
     }
 
-    /** Request válido mínimo; imagen y fuente quedan en null. */
+
     public static BlogRequest request(String id, String titulo, List<String> contenido) {
         return new BlogRequest(id, titulo, "Resumen", null, contenido, null, null);
     }

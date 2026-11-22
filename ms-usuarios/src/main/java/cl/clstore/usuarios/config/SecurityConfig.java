@@ -46,7 +46,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers("/actuator/health").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/auth/login", "/api/auth/registro").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/auth/login", "/api/auth/registro", "/api/auth/google").permitAll()
                 .requestMatchers("/api/usuarios/me").authenticated()
                 .anyRequest().hasAnyRole("Administrador", "Vendedor"))
             .oauth2ResourceServer(oauth -> oauth

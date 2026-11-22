@@ -5,7 +5,7 @@ spring:
   application:
     name: ms-usuarios
   datasource:
-    url: "${DB_URL:jdbc:mysql://localhost:3306/clstore_usuarios?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8}"
+    url: "${DB_URL:jdbc:mysql://localhost:3309/clstore_usuarios?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8}"
     username: root
     password: ""
   jpa:
@@ -24,6 +24,8 @@ app:
     secret: "${JWT_SECRET:clstore-dev-secret-cambiar-en-produccion-32b}"
   cors:
     allowed-origins: "${CORS_ORIGINS:http://localhost:5173}"
+  google:
+    client-id: "${GOOGLE_CLIENT_ID:}"
   auth:
     horas: ${JWT_HORAS:8}
   admin:   # administrador inicial: se crea solo si la tabla usuarios está vacía
