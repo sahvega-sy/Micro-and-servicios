@@ -2,6 +2,8 @@ package cl.clstore.productos.controller;
 
 import cl.clstore.productos.dto.StockRequest;
 import cl.clstore.productos.service.StockService;
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /** Uso interno: solo acepta un JWT de servicio (rol "Servicio") emitido por ms-ordenes. */
+@Hidden
 @RestController
 @RequestMapping("/api/productos/stock")
 public class StockController {
@@ -22,12 +25,14 @@ public class StockController {
     }
 
     /** 204 si todo se descontó; 409 (con el detalle) si algún producto no tiene stock suficiente. */
+    @Operation(summary = "Descontar stock")
     @PostMapping("/descontar")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void descontar(@Valid @RequestBody StockRequest request) {
         servicio.descontar(request.items());
     }
 
+    @Operation(summary = "Reponer stock")
     @PostMapping("/reponer")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void reponer(@Valid @RequestBody StockRequest request) {
