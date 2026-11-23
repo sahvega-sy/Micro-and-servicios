@@ -3,6 +3,9 @@ package cl.clstore.categoria.controller;
 import cl.clstore.categoria.dto.CategoriaRequest;
 import cl.clstore.categoria.dto.CategoriaResponse;
 import cl.clstore.categoria.service.CategoriaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.HttpStatus;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = "Categorías", description = "Categorías de productos. La lectura es pública; escribir requiere Administrador o Vendedor")
 @RestController
 @RequestMapping("/api/categorias")
 public class CategoriaController {
@@ -26,27 +30,35 @@ public class CategoriaController {
         this.servicio = servicio;
     }
 
+    @Operation(summary = "Listar categorías")
     @GetMapping
     public List<CategoriaResponse> listar() {
         return servicio.listar().stream().map(CategoriaResponse::desde).toList();
     }
 
+    @Operation(summary = "Obtener una categoría por su valor")
     @GetMapping("/{valor}")
     public CategoriaResponse obtener(@PathVariable("valor") String valor) {
         return CategoriaResponse.desde(servicio.obtener(valor));
     }
 
+    @Operation(summary = "Crear una categoría")
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CategoriaResponse crear(@Valid @RequestBody CategoriaRequest request) {
         return CategoriaResponse.desde(servicio.crear(request));
     }
 
+    @Operation(summary = "Actualizar una categoría")
+    @SecurityRequirement(name = "bearerAuth")
     @PutMapping("/{valor}")
     public CategoriaResponse actualizar(@PathVariable("valor") String valor, @Valid @RequestBody CategoriaRequest request) {
         return CategoriaResponse.desde(servicio.actualizar(valor, request));
     }
 
+    @Operation(summary = "Eliminar una categoría (409 si tiene productos)")
+    @SecurityRequirement(name = "bearerAuth")
     @DeleteMapping("/{valor}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminar(@PathVariable("valor") String valor) {

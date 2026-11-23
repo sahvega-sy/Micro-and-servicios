@@ -68,6 +68,27 @@ done
 | `UPLOADS_DIR` | `uploads` | Carpeta de imágenes (ms-productos, ms-blogs) |
 | `ADMIN_CORREO`, `ADMIN_PASSWORD`, `ADMIN_RUN` | ver arriba | Administrador inicial |
 
+## Documentación de la API (Swagger / OpenAPI)
+
+Cada microservicio publica su propia documentación interactiva con **springdoc-openapi**:
+
+| Servicio | Swagger UI | JSON OpenAPI |
+|---|---|---|
+| `ms-productos` | http://localhost:8081/swagger-ui.html | http://localhost:8081/v3/api-docs |
+| `ms-categoria` | http://localhost:8082/swagger-ui.html | http://localhost:8082/v3/api-docs |
+| `ms-blogs` | http://localhost:8083/swagger-ui.html | http://localhost:8083/v3/api-docs |
+| `ms-usuarios` | http://localhost:8084/swagger-ui.html | http://localhost:8084/v3/api-docs |
+| `ms-carrito` | http://localhost:8085/swagger-ui.html | http://localhost:8085/v3/api-docs |
+| `ms-ordenes` | http://localhost:8086/swagger-ui.html | http://localhost:8086/v3/api-docs |
+| `ms-resenas` | http://localhost:8087/swagger-ui.html | http://localhost:8087/v3/api-docs |
+| `ms-contacto` | http://localhost:8088/swagger-ui.html | http://localhost:8088/v3/api-docs |
+
+**Probar endpoints protegidos:** en el Swagger de `ms-usuarios` ejecuta `POST /api/auth/login` (`admin@duoc.cl` / `Admin123`),
+copia el `token`, pulsa **Authorize** y pégalo **sin** el prefijo `Bearer`. Como los 8 servicios comparten `JWT_SECRET`, el mismo token sirve en todos.
+Los endpoints con candado requieren JWT; los demás son públicos. Los endpoints internos de stock (`/api/productos/stock/**`) están ocultos.
+
+En producción se puede desactivar con la variable `SWAGGER_ENABLED=false`.
+
 ## Seguridad
 
 - **JWT HS256** firmado por ms-usuarios con claims `sub` (id), `rol` (`Administrador` | `Vendedor` | `Cliente`), `nombre`, `correo`.

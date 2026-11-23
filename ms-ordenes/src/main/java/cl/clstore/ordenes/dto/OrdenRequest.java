@@ -10,10 +10,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import java.util.List;
 
-/**
- * Datos del comprador y los productos a comprar. El precio NO viaja: lo lee ms-ordenes de ms-productos.
- * Compra de invitado: se envía sin token. Con sesión: se envía el JWT y la orden queda asociada al usuario.
- */
+
 public record OrdenRequest(
     @NotBlank(message = "es obligatorio") @Size(max = 100, message = "máximo 100 caracteres") String nombre,
     @NotBlank(message = "es obligatorio") @Size(max = 100, message = "máximo 100 caracteres") String apellidos,

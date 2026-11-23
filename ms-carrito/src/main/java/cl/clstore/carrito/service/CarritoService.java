@@ -1,5 +1,14 @@
 package cl.clstore.carrito.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import cl.clstore.carrito.client.ProductoClient;
 import cl.clstore.carrito.dto.ItemCarritoResponse;
 import cl.clstore.carrito.dto.ProductoResumen;
@@ -7,15 +16,7 @@ import cl.clstore.carrito.exception.RecursoNoEncontradoException;
 import cl.clstore.carrito.exception.ReglaNegocioException;
 import cl.clstore.carrito.model.CarritoItem;
 import cl.clstore.carrito.repository.CarritoItemRepository;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-/** Carrito del usuario autenticado. Precio, nombre, imagen y stock se leen de ms-productos en cada consulta. */
 @Service
 public class CarritoService {
 

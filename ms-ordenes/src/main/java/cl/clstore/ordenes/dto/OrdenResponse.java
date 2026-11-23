@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 
-/** Mismos nombres de columna que la tabla "ordenes" de Supabase. "items" solo viaja en el detalle. */
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public record OrdenResponse(
     Long id,
