@@ -15,16 +15,13 @@ import org.springframework.security.oauth2.jwt.JwtTimestampValidator;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.stereotype.Component;
 
-/**
- * Valida el ID token de Google: firma (con las claves públicas de Google), vencimiento, emisor
- * y que el token haya sido emitido para NUESTRO ID de cliente (audience).
- */
+
 @Component
 public class GoogleTokenVerifier {
 
     private static final String CLAVES_PUBLICAS = "https://www.googleapis.com/oauth2/v3/certs";
 
-    /** Datos del usuario que Google ya verificó. */
+    
     public record IdentidadGoogle(String correo, String nombre, String apellidos) {
     }
 
