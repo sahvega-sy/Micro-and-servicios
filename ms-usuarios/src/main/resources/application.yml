@@ -5,9 +5,9 @@ spring:
   application:
     name: ms-usuarios
   datasource:
-    url: "${DB_URL:jdbc:mysql://localhost:3309/clstore_usuarios?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8}"
-    username: root
-    password: ""
+    url: "${DB_URL:jdbc:mysql://localhost:3306/clstore_usuarios?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8}"
+    username: ${DB_USER:clstore}
+    password: "${DB_PASSWORD:clstore123}"
   jpa:
     open-in-view: false
     hibernate:
